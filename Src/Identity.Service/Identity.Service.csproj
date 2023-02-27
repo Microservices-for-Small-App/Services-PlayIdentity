@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-Identity.Service-181ed6a2-eae3-4171-ab68-f24f54b59fdd</UserSecretsId>
+    <UserSecretsId>aspnet-Identity.Service-a1c935c0-84f4-44be-b34f-a97cc9037367</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
