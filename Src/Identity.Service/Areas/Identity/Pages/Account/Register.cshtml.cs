@@ -17,6 +17,8 @@ namespace Identity.Service.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private const decimal StartingGil = 100;
+
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
@@ -107,6 +109,7 @@ namespace Identity.Service.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.Gil = StartingGil;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
