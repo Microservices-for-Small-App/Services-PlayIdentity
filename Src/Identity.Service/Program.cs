@@ -22,6 +22,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddControllers();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -45,6 +47,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.MapRazorPages();
 
