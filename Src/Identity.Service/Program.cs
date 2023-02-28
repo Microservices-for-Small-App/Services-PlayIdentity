@@ -1,6 +1,5 @@
 using CommonLibrary.Settings;
 using Identity.Service.Entities;
-using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
