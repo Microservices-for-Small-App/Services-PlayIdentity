@@ -31,7 +31,7 @@ public class UsersController : ControllerBase
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
 
-        if (user == null)
+        if (user is null)
         {
             return NotFound();
         }
@@ -45,7 +45,7 @@ public class UsersController : ControllerBase
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
 
-        if (user == null)
+        if (user is null)
         {
             return NotFound();
         }
@@ -65,7 +65,7 @@ public class UsersController : ControllerBase
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
 
-        if (user == null)
+        if (user is null)
         {
             return NotFound();
         }
