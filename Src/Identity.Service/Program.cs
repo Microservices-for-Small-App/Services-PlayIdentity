@@ -18,7 +18,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
     (
         mongoDbSettings?.ConnectionString,
         serviceSettings?.ServiceName
-    ); 
+    );
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
