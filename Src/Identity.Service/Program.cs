@@ -1,14 +1,34 @@
+using CommonLibrary.Settings;
+using Identity.Service.Entities;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlServer(connectionString));
+BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+
+var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+
+builder.Services.AddDefaultIdentity<ApplicationUser>()
+    .AddRoles<ApplicationRole>()
+    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+    (
+        mongoDbSettings?.ConnectionString,
+        serviceSettings?.ServiceName
+    );
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddControllers();
+
 builder.Services.AddRazorPages();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+_ = builder.Services.AddEndpointsApiExplorer();
+_ = builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -16,6 +36,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
@@ -25,11 +48,14 @@ else
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.MapRazorPages();
 
