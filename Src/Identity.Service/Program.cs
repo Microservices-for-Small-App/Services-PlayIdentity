@@ -1,5 +1,6 @@
 using CommonLibrary.Settings;
 using Identity.Service.Entities;
+using Identity.Service.Settings;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
@@ -11,6 +12,7 @@ BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
 var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+var identityServerSettings = new IdentityServerSettings();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
@@ -19,6 +21,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
         mongoDbSettings?.ConnectionString,
         serviceSettings?.ServiceName
     );
+
+builder.Services.AddIdentityServer()
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
+                .AddInMemoryClients(identityServerSettings.Clients)
+                .AddInMemoryIdentityResources(identityServerSettings.IdentityResources);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -52,6 +60,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseIdentityServer();
 
 app.UseAuthorization();
 
