@@ -4,7 +4,6 @@ using Identity.Service.Settings;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
