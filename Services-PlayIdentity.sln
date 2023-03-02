@@ -16,7 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{D87BB9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{C30A7A9F-5B67-4AC5-9369-8237DE5D108E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Service", "Src\Identity.Service\Identity.Service.csproj", "{47CA8D83-00DB-4C1F-BB04-D58E066D2993}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Service", "Src\Identity.Service\Identity.Service.csproj", "{47CA8D83-00DB-4C1F-BB04-D58E066D2993}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanCollections", "PostmanCollections", "{C4EC6461-890E-47D2-8715-18EB35A325F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
