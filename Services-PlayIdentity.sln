@@ -19,6 +19,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Service", "Src\Identity.Service\Identity.Service.csproj", "{47CA8D83-00DB-4C1F-BB04-D58E066D2993}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanCollections", "PostmanCollections", "{C4EC6461-890E-47D2-8715-18EB35A325F8}"
+	ProjectSection(SolutionItems) = preProject
+		PostmanCollections\Identity.Service.postman_collection.json = PostmanCollections\Identity.Service.postman_collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
