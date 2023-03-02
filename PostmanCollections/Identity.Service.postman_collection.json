@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "74babbf0-f220-4796-aaad-afeac3efdd29",
+		"name": "Identity.Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24752915"
+	},
+	"item": [
+		{
+			"name": "api/Users",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "/api/Users/:id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1407f784-b221-e181-f528-5edeb1b1751e",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1407f784-b221-e181-f528-5edeb1b1751e",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"633c2303-7629-679c-dcc4-fe5f2fff5a50\",\n  \"username\": \"qui mollit commodo laborum dolor\",\n  \"email\": \"officia deserunt\",\n  \"gil\": 27046136.388274357,\n  \"createdDate\": \"1980-01-18T22:08:24.223Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/api/Users/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"Excepteur quis cu\",\n  \"gil\": -89350515.04367876\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1407f784-b221-e181-f528-5edeb1b1751e",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"Excepteur quis cu\",\n  \"gil\": -89350515.04367876\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1407f784-b221-e181-f528-5edeb1b1751e",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "/api/Users/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1407f784-b221-e181-f528-5edeb1b1751e",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1407f784-b221-e181-f528-5edeb1b1751e",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "/api/Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/Users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"urn:uuid:53cebc68-ad6d-3d5a-2c21-ad203259405e\",\n    \"username\": \"proident laboris velit\",\n    \"email\": \"consectetur officia ad\",\n    \"gil\": 74555655.69603878,\n    \"createdDate\": \"1947-06-17T11:52:09.047Z\"\n  },\n  {\n    \"id\": \"6f6725cb-2f5c-6b32-0506-08659865c8d0\",\n    \"username\": \"consequat irure\",\n    \"email\": \"mollit in in dolore\",\n    \"gil\": -51260687.45764578,\n    \"createdDate\": \"2007-07-20T15:06:51.923Z\"\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Duende-Identity",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/.well-known/openid-configuration",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								".well-known",
+								"openid-configuration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:5003",
+			"type": "string"
+		}
+	]
+}
