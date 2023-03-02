@@ -2,7 +2,6 @@
 
 namespace Identity.Service.Settings;
 
-
 public class IdentityServerSettings
 {
     public IReadOnlyCollection<ApiScope> ApiScopes { get; init; } = Array.Empty<ApiScope>();
@@ -14,5 +13,4 @@ public class IdentityServerSettings
         {
             new IdentityResources.OpenId()
         };
-
 }
