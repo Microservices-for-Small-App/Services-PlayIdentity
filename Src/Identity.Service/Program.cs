@@ -22,11 +22,16 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
         serviceSettings?.ServiceName
     );
 
-builder.Services.AddIdentityServer()
-                .AddAspNetIdentity<ApplicationUser>()
-                .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
-                .AddInMemoryClients(identityServerSettings.Clients)
-                .AddInMemoryIdentityResources(identityServerSettings.IdentityResources);
+builder.Services.AddIdentityServer(options =>
+{
+    options.Events.RaiseSuccessEvents = true;
+    options.Events.RaiseFailureEvents = true;
+    options.Events.RaiseErrorEvents = true;
+}).AddAspNetIdentity<ApplicationUser>()
+  .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
+  .AddInMemoryClients(identityServerSettings.Clients)
+  .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
+  .AddDeveloperSigningCredential();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
