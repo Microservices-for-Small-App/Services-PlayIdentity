@@ -289,7 +289,7 @@
 			"name": "Duende-Identity",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "GET /.well-known/openid-configuration",
 					"request": {
 						"method": "GET",
 						"header": [],

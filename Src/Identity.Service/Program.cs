@@ -12,7 +12,7 @@ BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
 var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-var identityServerSettings = new IdentityServerSettings();
+var identityServerSettings = builder.Configuration.GetSection(nameof(IdentityServerSettings)).Get<IdentityServerSettings>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
@@ -22,11 +22,16 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
         serviceSettings?.ServiceName
     );
 
-builder.Services.AddIdentityServer()
-                .AddAspNetIdentity<ApplicationUser>()
-                .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
-                .AddInMemoryClients(identityServerSettings.Clients)
-                .AddInMemoryIdentityResources(identityServerSettings.IdentityResources);
+builder.Services.AddIdentityServer(options =>
+{
+    options.Events.RaiseSuccessEvents = true;
+    options.Events.RaiseFailureEvents = true;
+    options.Events.RaiseErrorEvents = true;
+}).AddAspNetIdentity<ApplicationUser>()
+  .AddInMemoryApiScopes(identityServerSettings!.ApiScopes)
+  .AddInMemoryClients(identityServerSettings.Clients)
+  .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
+  .AddDeveloperSigningCredential();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
