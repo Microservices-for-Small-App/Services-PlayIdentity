@@ -2,6 +2,10 @@
 
 .NET 7 Identity System for a small microservices application
 
+```powershell
+$host.ui.RawUI.WindowTitle = "Identity"
+```
+
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator --version 7.0.4
 dotnet tool update -g dotnet-aspnet-codegenerator
@@ -31,6 +35,6 @@ dotnet aspnet-codegenerator identity --files "Account.Register"
   </ItemGroup>
 ```
 
-## Support for ASP.NET Core Identity was added to your project.
+## Support for ASP.NET Core Identity was added to your project
 
-> 1. For setup and configuration information, see https://go.microsoft.com/fwlink/?linkid=2116645.
+> 1. For setup and configuration information, see <https://go.microsoft.com/fwlink/?linkid=2116645>.

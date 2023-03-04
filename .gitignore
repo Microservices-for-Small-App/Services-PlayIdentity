@@ -348,5 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-Src/Identity.Service/keys/is-signing-key-7CAB1835C3FE5BAC1A3BC5A545072A79.json
+Src/Identity.Service/keys/**
 Src/Identity.Service/tempkey.jwk
