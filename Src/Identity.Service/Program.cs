@@ -34,6 +34,8 @@ builder.Services.AddIdentityServer(options =>
   .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
   .AddDeveloperSigningCredential();
 
+builder.Services.AddLocalApiAuthentication();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllers();
