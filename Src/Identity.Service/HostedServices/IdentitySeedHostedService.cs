@@ -30,7 +30,7 @@ public class IdentitySeedHostedService : IHostedService
 
         var adminUser = await userManager.FindByEmailAsync(_settings.AdminUserEmail);
 
-        if (adminUser == null)
+        if (adminUser is null)
         {
             adminUser = new ApplicationUser
             {
@@ -47,9 +47,7 @@ public class IdentitySeedHostedService : IHostedService
 
     private static async Task CreateRoleIfNotExistsAsync(string role, RoleManager<ApplicationRole> roleManager)
     {
-        var roleExists = await roleManager.RoleExistsAsync(role);
-
-        if (!roleExists)
+        if (!await roleManager.RoleExistsAsync(role))
         {
             await roleManager.CreateAsync(new ApplicationRole { Name = role });
         }
