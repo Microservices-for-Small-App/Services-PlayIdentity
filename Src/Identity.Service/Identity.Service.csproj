@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-Identity.Service-a1c935c0-84f4-44be-b34f-a97cc9037367</UserSecretsId>
+    <UserSecretsId>a1c935c0-Play-Identity.Service</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
