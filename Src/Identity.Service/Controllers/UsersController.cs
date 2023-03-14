@@ -1,4 +1,5 @@
-﻿using Identity.Service.Dtos;
+﻿using Identity.Service.Common;
+using Identity.Service.Dtos;
 using Identity.Service.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +10,7 @@ namespace Identity.Service.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize(Policy = LocalApi.PolicyName)]
+[Authorize(Policy = LocalApi.PolicyName, Roles = Roles.Admin)]
 public class UsersController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
