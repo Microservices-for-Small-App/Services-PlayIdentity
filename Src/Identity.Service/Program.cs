@@ -8,6 +8,8 @@ using MongoDB.Bson.Serialization.Serializers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+const string AllowedOriginSetting = "AllowedOrigin";
+
 // Add services to the container.
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
@@ -56,10 +58,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
+    _ = app.UseMigrationsEndPoint();
 
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.UseCors(options =>
+    {
+        options.WithOrigins(builder.Configuration[AllowedOriginSetting]!)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 }
 else
 {
