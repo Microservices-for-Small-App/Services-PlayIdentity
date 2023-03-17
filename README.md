@@ -13,6 +13,8 @@ dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 
 dotnet aspnet-codegenerator identity --files "Account.Register"
+
+dotnet aspnet-codegenerator identity --files "Account.Logout"
 ```
 
 ```xml
