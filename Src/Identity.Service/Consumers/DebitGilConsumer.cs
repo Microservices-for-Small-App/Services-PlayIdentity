@@ -1,5 +1,6 @@
 ﻿using Identity.Contracts;
 using Identity.Service.Entities;
+using Identity.Service.Exceptions;
 using MassTransit;
 using Microsoft.AspNetCore.Identity;
 
@@ -7,20 +8,20 @@ namespace Identity.Service.Consumers;
 
 public class DebitGilConsumer : IConsumer<DebitGil>
 {
-    private readonly UserManager<ApplicationUser> userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public DebitGilConsumer(UserManager<ApplicationUser> userManager)
     {
-        this.userManager = userManager;
+        _userManager = userManager;
     }
 
     public async Task Consume(ConsumeContext<DebitGil> context)
     {
         var message = context.Message;
 
-        var user = await userManager.FindByIdAsync(message.UserId.ToString());
+        var user = await _userManager.FindByIdAsync(message.UserId.ToString());
 
-        if (user == null)
+        if (user is null)
         {
             throw new UnknownUserException(message.UserId);
         }
@@ -32,7 +33,7 @@ public class DebitGilConsumer : IConsumer<DebitGil>
             throw new InsufficientFundsException(message.UserId, message.Gil);
         }
 
-        await userManager.UpdateAsync(user);
+        await _userManager.UpdateAsync(user);
 
         await context.Publish(new GilDebited(message.CorrelationId));
     }
