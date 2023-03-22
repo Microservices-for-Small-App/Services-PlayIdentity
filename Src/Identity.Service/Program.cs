@@ -1,5 +1,8 @@
+using CommonLibrary.MassTransit;
 using CommonLibrary.Settings;
+using GreenPipes;
 using Identity.Service.Entities;
+using Identity.Service.Exceptions;
 using Identity.Service.HostedServices;
 using Identity.Service.Settings;
 using MongoDB.Bson;
@@ -22,10 +25,14 @@ builder.Services
     .AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
     .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
-    (
-        mongoDbSettings?.ConnectionString,
-        serviceSettings?.ServiceName
-    );
+        (mongoDbSettings?.ConnectionString, serviceSettings?.ServiceName);
+
+builder.Services.AddMassTransitWithRabbitMq(retryConfigurator =>
+{
+    retryConfigurator.Interval(3, TimeSpan.FromSeconds(5));
+    retryConfigurator.Ignore(typeof(UnknownUserException));
+    retryConfigurator.Ignore(typeof(InsufficientFundsException));
+});
 
 builder.Services.AddIdentityServer(options =>
 {
