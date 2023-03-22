@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanCollections", "Postm
 		PostmanCollections\Identity.Service.postman_collection.json = PostmanCollections\Identity.Service.postman_collection.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Contracts", "Src\Identity.Contracts\Identity.Contracts.csproj", "{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{47CA8D83-00DB-4C1F-BB04-D58E066D2993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47CA8D83-00DB-4C1F-BB04-D58E066D2993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47CA8D83-00DB-4C1F-BB04-D58E066D2993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D87BB9C9-1030-411C-88E2-19B6DA2CAB43} = {437D2980-B7FE-4B07-9457-40F3D10E5F6A}
 		{47CA8D83-00DB-4C1F-BB04-D58E066D2993} = {C30A7A9F-5B67-4AC5-9369-8237DE5D108E}
+		{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3} = {C30A7A9F-5B67-4AC5-9369-8237DE5D108E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {207545B8-8C59-4277-95EB-48EA5457696B}
