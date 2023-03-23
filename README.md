@@ -2,6 +2,10 @@
 
 .NET 7 Identity System for a small microservices application
 
+```dotnetcli
+dotnet pack -o C:\LordKrishna\Packages\
+```
+
 ```powershell
 $host.ui.RawUI.WindowTitle = "Identity"
 ```
