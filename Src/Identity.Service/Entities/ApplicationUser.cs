@@ -7,4 +7,6 @@ namespace Identity.Service.Entities;
 public class ApplicationUser : MongoIdentityUser<Guid>
 {
     public decimal Gil { get; set; }
+
+    public HashSet<Guid> MessageIds { get; set; } = new();
 }
