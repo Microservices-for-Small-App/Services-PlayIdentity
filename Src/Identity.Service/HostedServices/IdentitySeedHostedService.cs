@@ -28,7 +28,7 @@ public class IdentitySeedHostedService : IHostedService
         await CreateRoleIfNotExistsAsync(Roles.Admin, roleManager);
         await CreateRoleIfNotExistsAsync(Roles.Player, roleManager);
 
-        var adminUser = await userManager.FindByEmailAsync(_settings.AdminUserEmail);
+        var adminUser = await userManager.FindByEmailAsync(_settings.AdminUserEmail!);
 
         if (adminUser is null)
         {
@@ -38,7 +38,7 @@ public class IdentitySeedHostedService : IHostedService
                 Email = _settings.AdminUserEmail
             };
 
-            await userManager.CreateAsync(adminUser, _settings.AdminUserPassword);
+            await userManager.CreateAsync(adminUser, _settings.AdminUserPassword!);
             await userManager.AddToRoleAsync(adminUser, Roles.Admin);
         }
     }
