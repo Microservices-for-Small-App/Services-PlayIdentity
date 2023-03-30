@@ -6,7 +6,7 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
-    public string ReturnUrl { get; set; } = string.Empty;
+    public string? ReturnUrl { get; set; }
 
     public IndexModel(ILogger<IndexModel> logger)
     {

@@ -2,9 +2,9 @@
 
 public class IdentitySettings
 {
-    public string AdminUserEmail { get; init; } = string.Empty;
+    public string? AdminUserEmail { get; init; }
 
-    public string AdminUserPassword { get; init; } = string.Empty;
+    public string? AdminUserPassword { get; init; }
 
     public decimal StartingGil { get; init; }
 }
