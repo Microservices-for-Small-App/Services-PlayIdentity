@@ -2,9 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using Identity.Contracts;
 using Identity.Service.Common;
 using Identity.Service.Entities;
 using Identity.Service.Settings;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -27,10 +29,11 @@ public class RegisterModel : PageModel
     private readonly ILogger<RegisterModel> _logger;
     private readonly IEmailSender _emailSender;
     private readonly IdentitySettings _identitySettings;
+    private readonly IPublishEndpoint _publishEndpoint;
 
     public RegisterModel(UserManager<ApplicationUser> userManager, IUserStore<ApplicationUser> userStore,
         SignInManager<ApplicationUser> signInManager, ILogger<RegisterModel> logger,
-        IEmailSender emailSender, IOptions<IdentitySettings> identityOptions)
+        IEmailSender emailSender, IOptions<IdentitySettings> identityOptions, IPublishEndpoint publishEndpoint)
     {
         _userManager = userManager;
         _userStore = userStore;
@@ -40,6 +43,8 @@ public class RegisterModel : PageModel
         _emailSender = emailSender;
 
         _identitySettings = identityOptions.Value;
+
+        _publishEndpoint = publishEndpoint;
     }
 
     /// <summary>
@@ -122,6 +127,8 @@ public class RegisterModel : PageModel
 
                 await _userManager.AddToRoleAsync(user, Roles.Player);
                 _logger.LogInformation($"User added to the role {Roles.Player} role.");
+
+                await _publishEndpoint.Publish(new UserUpdated(user.Id, user.Email, user.Gil));
 
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
