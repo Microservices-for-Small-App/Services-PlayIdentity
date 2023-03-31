@@ -1,6 +1,8 @@
-﻿using Identity.Service.Common;
+﻿using Identity.Contracts;
+using Identity.Service.Common;
 using Identity.Service.Dtos;
 using Identity.Service.Entities;
+using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,13 @@ namespace Identity.Service.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public UsersController(UserManager<ApplicationUser> userManager)
+    public UsersController(UserManager<ApplicationUser> userManager, IPublishEndpoint publishEndpoint)
     {
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+
+        _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
     }
 
     [HttpGet]
@@ -60,6 +65,8 @@ public class UsersController : ControllerBase
 
         await _userManager.UpdateAsync(user);
 
+        await _publishEndpoint.Publish(new UserUpdated(user.Id, user.Email, user.Gil));
+
         return NoContent();
     }
 
@@ -75,6 +82,8 @@ public class UsersController : ControllerBase
         }
 
         await _userManager.DeleteAsync(user);
+
+        await _publishEndpoint.Publish(new UserUpdated(user.Id, user.Email!, 0));
 
         return NoContent();
     }

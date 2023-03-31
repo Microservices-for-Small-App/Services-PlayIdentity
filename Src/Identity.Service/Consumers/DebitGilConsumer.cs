@@ -26,7 +26,7 @@ public class DebitGilConsumer : IConsumer<DebitGil>
             throw new UnknownUserException(message.UserId);
         }
 
-        if (user.MessageIds.Contains(context.MessageId.Value))
+        if (user.MessageIds.Contains(context.MessageId!.Value))
         {
             await context.Publish(new GilDebited(message.CorrelationId));
 
@@ -44,6 +44,10 @@ public class DebitGilConsumer : IConsumer<DebitGil>
 
         await _userManager.UpdateAsync(user);
 
-        await context.Publish(new GilDebited(message.CorrelationId));
+        var gitDebitedTask = context.Publish(new GilDebited(message.CorrelationId));
+
+        var userUpdatedTask = context.Publish(new UserUpdated(user.Id, user.Email!, user.Gil));
+
+        await Task.WhenAll(userUpdatedTask, gitDebitedTask);
     }
 }
