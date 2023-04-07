@@ -8,6 +8,7 @@ using Identity.Service.Settings;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,9 @@ builder.Services.AddIdentityServer(options =>
     options.Events.RaiseSuccessEvents = true;
     options.Events.RaiseFailureEvents = true;
     options.Events.RaiseErrorEvents = true;
+
+    options.KeyManagement.KeyPath = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location);
+
 }).AddAspNetIdentity<ApplicationUser>()
   .AddInMemoryApiScopes(identityServerSettings!.ApiScopes)
   .AddInMemoryApiResources(identityServerSettings.ApiResources)
@@ -93,6 +97,11 @@ app.UseRouting();
 app.UseIdentityServer();
 
 app.UseAuthorization();
+
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Lax
+});
 
 app.MapControllers();
 
