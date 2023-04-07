@@ -24,6 +24,17 @@ dotnet nuget push C:\LordKrishna\SSP\Packages\$libname.$version.nupkg --source "
 ```
 
 ```powershell
+$env:GH_OWNER="Microservices-for-Small-App"
+$env:GH_PAT="ghp_Your_GitHib_Classic_PAT"
+docker build --secret id=GH_OWNER --secret id=GH_PAT -f "C:\LordKrishna\SSP\Services-PlayIdentity\Src\Identity.Service\Dockerfile" -t playidentity:$version .
+```
+
+```powershell
+$adminPass="[PASSWORD HERE-Sample@123$]"
+docker run -it --rm -d -p 5002:5002 --name identity -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq -e IdentitySettings__AdminUserPassword=$adminPass --network dakar_default playidentity:$version
+```
+
+```powershell
 $host.ui.RawUI.WindowTitle = "Identity"
 ```
 
