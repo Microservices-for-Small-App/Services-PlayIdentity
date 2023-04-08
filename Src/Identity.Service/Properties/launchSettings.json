@@ -3,7 +3,10 @@
     "Docker": {
       "commandName": "Docker",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "IdentitySettings__AdminUserPassword": "Sample@123$",
+        "MongoDbSettings__Host": "mongo",
+        "RabbitMQSettings__Host": "rabbitmq"
       },
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
