@@ -11,16 +11,21 @@ USER appuser
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Services-PlayIdentity/Src/Identity.Service/Identity.Service.csproj", "Services-PlayIdentity/Src/Identity.Service/"]
-RUN dotnet restore "Services-PlayIdentity/Src/Identity.Service/Identity.Service.csproj"
+COPY ["Src/Identity.Contracts/Identity.Contracts.csproj", "Src/Identity.Contracts/"]
+COPY ["Src/Identity.Service/Identity.Service.csproj", "Src/Identity.Service/"]
+
+RUN dotnet restore "Src/Identity.Service/Identity.Service.csproj"
 COPY . .
-WORKDIR "/src/Services-PlayIdentity/Src/Identity.Service"
-RUN dotnet build "Identity.Service.csproj" -c Release -o /app/build
+
+WORKDIR "/src/Src/Identity.Service"
+RUN dotnet build "Identity.Service.csproj" -c Release --no-restore -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Identity.Service.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Identity.Service.csproj" -c Release --no-restore -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Identity.Service.dll"]
+
+# docker build --pull --rm -f "./Src/Identity.Service/Prod.Dockerfile" -t ssp-identity:latest .
