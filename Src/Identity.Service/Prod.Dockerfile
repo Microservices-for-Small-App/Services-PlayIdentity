@@ -14,6 +14,10 @@ WORKDIR /src
 COPY ["Src/Identity.Contracts/Identity.Contracts.csproj", "Src/Identity.Contracts/"]
 COPY ["Src/Identity.Service/Identity.Service.csproj", "Src/Identity.Service/"]
 
+RUN --mount=type=secret,id=GH_OWNER,dst=/GH_OWNER --mount=type=secret,id=GH_PAT,dst=/GH_PAT
+
+RUN dotnet nuget add source --username USERNAME --password `cat /GH_PAT` --store-password-in-clear-text --name github "https://nuget.pkg.github.com/`cat /GH_OWNER`/index.json"
+
 RUN dotnet restore "Src/Identity.Service/Identity.Service.csproj"
 COPY . .
 
@@ -28,4 +32,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Identity.Service.dll"]
 
-# docker build --pull --rm -f "./Src/Identity.Service/Prod.Dockerfile" -t ssp-identity:latest .
+# C:\LordKrishna\SSP\Services-PlayIdentity> docker build --pull --rm -f "./Src/Identity.Service/Prod.Dockerfile" -t ssp-identity:latest .
