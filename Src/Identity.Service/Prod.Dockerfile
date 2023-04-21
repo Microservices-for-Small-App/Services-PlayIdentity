@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=GH_OWNER,dst=/GH_OWNER --mount=type=secret,id=GH_PAT,
     dotnet nuget add source --username USERNAME --password `cat /GH_PAT` --store-password-in-clear-text --name github "https://nuget.pkg.github.com/`cat /GH_OWNER`/index.json"
 
 RUN dotnet restore "Src/Identity.Service/Identity.Service.csproj"
-COPY . .
+COPY ./Src ./Src
 
 WORKDIR "/Src/Identity.Service"
 RUN dotnet build "Identity.Service.csproj" -c Release --no-restore -o /app/build
