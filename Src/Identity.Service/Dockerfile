@@ -12,10 +12,10 @@ COPY ["Src/Identity.Contracts/Identity.Contracts.csproj", "Src/Identity.Contract
 RUN dotnet restore "Src/Identity.Service/Identity.Service.csproj"
 COPY . .
 WORKDIR "/src/Src/Identity.Service"
-RUN dotnet build "Identity.Service.csproj" -c Release -o /app/build
+RUN dotnet build "Identity.Service.csproj" -c Release --no-restore -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Identity.Service.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Identity.Service.csproj" -c Release --no-restore -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
