@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["Src/Identity.Service/Identity.Service.csproj", "Src/Identity.Service/"]
 COPY ["Src/Identity.Contracts/Identity.Contracts.csproj", "Src/Identity.Contracts/"]
 RUN dotnet restore "Src/Identity.Service/Identity.Service.csproj"
-COPY . .
+COPY ./Scr ./Src
 WORKDIR "/src/Src/Identity.Service"
 RUN dotnet build "Identity.Service.csproj" -c Release --no-restore -o /app/build
 
