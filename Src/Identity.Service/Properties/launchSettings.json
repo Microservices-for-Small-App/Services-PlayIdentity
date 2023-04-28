@@ -1,4 +1,12 @@
 {
+  "iisSettings": {
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:1525",
+      "sslPort": 44328
+    },
+    "windowsAuthentication": false
+  },
   "profiles": {
     "Docker": {
       "commandName": "Docker",
@@ -30,13 +38,5 @@
       },
       "launchBrowser": true
     }
-  },
-  "iisSettings": {
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:1525",
-      "sslPort": 44328
-    },
-    "windowsAuthentication": false
   }
 }
