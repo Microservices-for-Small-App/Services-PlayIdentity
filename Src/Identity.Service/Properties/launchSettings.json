@@ -5,6 +5,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "IdentitySettings__AdminUserPassword": "Sample@123$",
+        "MongoDbSettings__ConnectionString": "mongodb://YourConnectionString",
         "MongoDbSettings__Host": "mongo",
         "RabbitMQSettings__Host": "rabbitmq"
       },
