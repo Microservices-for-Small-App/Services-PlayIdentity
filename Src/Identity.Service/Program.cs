@@ -28,7 +28,14 @@ builder.Services
     .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
         (mongoDbSettings?.ConnectionString, serviceSettings?.ServiceName);
 
-builder.Services.AddMassTransitWithRabbitMq(retryConfigurator =>
+//builder.Services.AddMassTransitWithRabbitMq(retryConfigurator =>
+//{
+//    retryConfigurator.Interval(3, TimeSpan.FromSeconds(5));
+//    retryConfigurator.Ignore(typeof(UnknownUserException));
+//    retryConfigurator.Ignore(typeof(InsufficientFundsException));
+//});
+
+builder.Services.AddMassTransitWithMessageBroker(builder.Configuration, retryConfigurator =>
 {
     retryConfigurator.Interval(3, TimeSpan.FromSeconds(5));
     retryConfigurator.Ignore(typeof(UnknownUserException));
