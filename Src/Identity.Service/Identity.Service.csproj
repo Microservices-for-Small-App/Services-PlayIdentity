@@ -7,7 +7,7 @@
     <UserSecretsId>a1c935c0-Play-Identity.Service</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
-    <DockerfileRunArguments>--network dakar_default</DockerfileRunArguments>
+    <DockerfileRunArguments>--network dc-mongo-rmq_default</DockerfileRunArguments>
   </PropertyGroup>
 
   <ItemGroup>

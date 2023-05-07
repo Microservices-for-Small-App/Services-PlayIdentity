@@ -10,7 +10,7 @@ docker build --secret id=GH_OWNER --secret id=GH_PAT -f "C:\LordKrishna\SSP\Serv
 
 ```powershell
 $adminPass="[PASSWORD HERE-Sample@123$]"
-docker run -it --rm -d -p 5002:5002 --name identity -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq -e IdentitySettings__AdminUserPassword=$adminPass --network dakar_default playidentity:$version
+docker run -it --rm -d -p 5002:5002 --name identity -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq -e IdentitySettings__AdminUserPassword=$adminPass --network dc-mongo-rmq_default playidentity:$version
 ```
 
 ```powershell
