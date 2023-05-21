@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ssp-identityservice-deployment
+  name: identityservice-deployment
 spec:
   selector:
     matchLabels:
-      app: ssp-identityservice
+      app: identityservice
   template:
     metadata:
       labels:
-        app: ssp-identityservice
+        app: identityservice
     spec:
       containers:
         - name: ssp-identityservice
