@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: identity-deployment
+  name: ssp-identityservice-deployment
 spec:
   selector:
     matchLabels:
-      app: identity
+      app: ssp-identityservice
   template:
     metadata:
       labels:
-        app: identity
+        app: ssp-identityservice
     spec:
       containers:
-        - name: identity
+        - name: ssp-identityservice
           image: acrplayeconomydev001.azurecr.io/ssp-identityservice:latest
           env:
             - name: ServiceSettings__MessageBroker
