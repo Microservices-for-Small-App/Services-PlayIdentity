@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: identityservice
+      app: identityservice-app
   template:
     metadata:
       labels:
-        app: identityservice
+        app: identityservice-app
     spec:
       containers:
         - name: ssp-identityservice
@@ -38,3 +38,16 @@ spec:
               cpu: "150m"
           ports:
             - containerPort: 5002
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: identityservice-app
+  ports:
+    - port: 80
+      targetPort: 5002
