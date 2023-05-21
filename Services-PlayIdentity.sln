@@ -23,7 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanCollections", "Postm
 		PostmanCollections\Identity.Service.postman_collection.json = PostmanCollections\Identity.Service.postman_collection.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Contracts", "Src\Identity.Contracts\Identity.Contracts.csproj", "{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Contracts", "Src\Identity.Contracts\Identity.Contracts.csproj", "{7E5EBA13-3476-49E2-A4EB-F2775CE98DB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8s", "K8s", "{C6B4EC48-7035-47F3-8EA8-3026CACDACA8}"
+	ProjectSection(SolutionItems) = preProject
+		K8s\identity.yaml = K8s\identity.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
