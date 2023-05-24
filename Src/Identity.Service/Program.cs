@@ -71,6 +71,8 @@ builder.Services.AddHostedService<IdentitySeedHostedService>();
 _ = builder.Services.AddEndpointsApiExplorer();
 _ = builder.Services.AddSwaggerGen();
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -113,5 +115,7 @@ app.UseCookiePolicy(new CookiePolicyOptions
 app.MapControllers();
 
 app.MapRazorPages();
+
+app.MapHealthChecks("/health");
 
 app.Run();
