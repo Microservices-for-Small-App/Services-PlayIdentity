@@ -1,17 +1,14 @@
+using CommonLibrary.HealthChecks;
 using CommonLibrary.MassTransit;
 using CommonLibrary.Settings;
 using GreenPipes;
 using Identity.Service.Entities;
 using Identity.Service.Exceptions;
-using Identity.Service.HealthChecks;
 using Identity.Service.HostedServices;
 using Identity.Service.Settings;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Driver;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -76,18 +73,7 @@ _ = builder.Services.AddEndpointsApiExplorer();
 _ = builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecks()
-                .Add(new HealthCheckRegistration(
-                    "mongodb",
-                    serviceProvider =>
-                    {
-                        var mongoClient = new MongoClient(mongoDbSettings?.ConnectionString);
-
-                        return new MongoDbHealthCheck(mongoClient);
-                    },
-                    HealthStatus.Unhealthy,
-                    new[] { "ready" },
-                    TimeSpan.FromSeconds(3)
-                ));
+                .AddMongoDb();
 
 var app = builder.Build();
 
@@ -132,14 +118,16 @@ app.MapControllers();
 
 app.MapRazorPages();
 
-app.MapHealthChecks("/health/ready", new HealthCheckOptions()
-{
-    Predicate = (check) => check.Tags.Contains("ready")
-});
+app.MapPlayEconomyHealthChecks();
 
-app.MapHealthChecks("/health/live", new HealthCheckOptions()
-{
-    Predicate = (check) => false
-});
+//app.MapHealthChecks("/health/ready", new HealthCheckOptions()
+//{
+//    Predicate = (check) => check.Tags.Contains("ready")
+//});
+
+//app.MapHealthChecks("/health/live", new HealthCheckOptions()
+//{
+//    Predicate = (check) => false
+//});
 
 app.Run();
