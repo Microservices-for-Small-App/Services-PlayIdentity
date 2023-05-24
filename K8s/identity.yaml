@@ -40,14 +40,18 @@ spec:
             - containerPort: 5002
           livenessProbe:
             httpGet:
+              scheme: HTTP
               path: /health/live
               port: 5002
             initialDelaySeconds: 10
+            periodSeconds: 10
           readinessProbe:
             httpGet:
+              scheme: HTTP
               path: /health/ready
               port: 5002
-            initialDelaySeconds: 10          
+            initialDelaySeconds: 10
+            periodSeconds: 10
 
 ---
 apiVersion: v1
