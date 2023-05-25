@@ -77,7 +77,7 @@ builder.Services.AddHealthChecks().AddMongoDb();
 
 if (builder.Environment.IsProduction())
 {
-    _ = builder.Configuration.AddAzureKeyVault(new Uri("https://playeconomy.vault.azure.net/"), new DefaultAzureCredential());
+    _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
 }
 
 var app = builder.Build();
