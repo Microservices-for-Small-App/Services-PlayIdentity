@@ -11,6 +11,7 @@ spec:
       labels:
         app: identityservice-app
     spec:
+      serviceAccountName: identity-serviceaccount
       containers:
         - name: ssp-identityservice
           image: acrplayeconomydev001.azurecr.io/ssp-identityservice:latest
@@ -65,3 +66,14 @@ spec:
   ports:
     - port: 80
       targetPort: 5002
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: identity-serviceaccount
+  annotations:
+    # This is the client id of the managed identity. Please remove the client id before checking in the code.
+    azure.workload.identity/client-id: xxxx-xxxxx-xxxxx-xxxxx
+  labels:
+    azure.workload.identity/use: "true"
