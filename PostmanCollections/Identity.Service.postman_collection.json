@@ -234,6 +234,46 @@
 				{
 					"name": "/api/Users",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessTokenUrl",
+									"value": "{{baseUrl}}/connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{baseUrl}}/connect/authorize?prompt=login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid profile IdentityServerApi",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "postman",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "urn:ietf:wg:oauth:2.0:oob",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code_with_pkce",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -305,8 +345,140 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Token",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "openid profile",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "postman",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://localhost:5003/connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://localhost:5003/connect/authorize",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "urn:ietf:wg:oauth:2.0:oob",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code_with_pkce",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "GET AKS/health/ready",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Custom-Header",
+						"value": "Awesome",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{aksBaseUrl}}/health/ready",
+					"host": [
+						"{{aksBaseUrl}}"
+					],
+					"path": [
+						"health",
+						"ready"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET AKS/health/live",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Custom-Header",
+						"value": "Awesome",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{aksBaseUrl}}/health/live",
+					"host": [
+						"{{aksBaseUrl}}"
+					],
+					"path": [
+						"health",
+						"live"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Local/health/ready",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/health/ready",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"health",
+						"ready"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Local/health/live",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/health/live",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"health",
+						"live"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -333,6 +505,11 @@
 		{
 			"key": "baseUrl",
 			"value": "https://localhost:5003",
+			"type": "string"
+		},
+		{
+			"key": "aksBaseUrl",
+			"value": "http://20.253.64.46",
 			"type": "string"
 		}
 	]

@@ -1,3 +1,4 @@
+using CommonLibrary.HealthChecks;
 using CommonLibrary.MassTransit;
 using CommonLibrary.Settings;
 using GreenPipes;
@@ -71,6 +72,9 @@ builder.Services.AddHostedService<IdentitySeedHostedService>();
 _ = builder.Services.AddEndpointsApiExplorer();
 _ = builder.Services.AddSwaggerGen();
 
+builder.Services.AddHealthChecks()
+                .AddMongoDb();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -113,5 +117,17 @@ app.UseCookiePolicy(new CookiePolicyOptions
 app.MapControllers();
 
 app.MapRazorPages();
+
+app.MapPlayEconomyHealthChecks();
+
+//app.MapHealthChecks("/health/ready", new HealthCheckOptions()
+//{
+//    Predicate = (check) => check.Tags.Contains("ready")
+//});
+
+//app.MapHealthChecks("/health/live", new HealthCheckOptions()
+//{
+//    Predicate = (check) => false
+//});
 
 app.Run();
