@@ -1,3 +1,4 @@
+using Azure.Identity;
 using CommonLibrary.HealthChecks;
 using CommonLibrary.MassTransit;
 using CommonLibrary.Settings;
