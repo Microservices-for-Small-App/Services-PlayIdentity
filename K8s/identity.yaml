@@ -5,15 +5,17 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: identity-app
+      app: identity
   template:
     metadata:
       labels:
-        app: identity-app
+        app: identity
     spec:
+      serviceAccountName: identity-serviceaccount
       containers:
         - name: ssp-identityservice
           image: acrplayeconomydev001.azurecr.io/ssp-identityservice:latest
+          imagePullPolicy: Always
           env:
             - name: ServiceSettings__MessageBroker
               value: SERVICEBUS
@@ -61,7 +63,17 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: identity-app
+    app: identity
   ports:
     - port: 80
       targetPort: 5002
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: identity-serviceaccount
+  annotations:
+    azure.workload.identity/client-id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXX
+  labels:
+    azure.workload.identity/use: "true"
