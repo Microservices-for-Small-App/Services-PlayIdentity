@@ -10,6 +10,7 @@ spec:
     metadata:
       labels:
         app: identity
+        azure.workload.identity/use: "true"
     spec:
       serviceAccountName: identity-serviceaccount
       containers:
@@ -19,21 +20,6 @@ spec:
           env:
             - name: ServiceSettings__MessageBroker
               value: SERVICEBUS
-            - name: MongoDbSettings__ConnectionString
-              valueFrom:
-                secretKeyRef:
-                  name: identity-secrets
-                  key: cosmosdb-connectionstring
-            - name: ServiceBusSettings__ConnectionString
-              valueFrom:
-                secretKeyRef:
-                  name: identity-secrets
-                  key: servicebus-connectionstring
-            - name: IdentitySettings__AdminUserPassword
-              valueFrom:
-                secretKeyRef:
-                  name: identity-secrets
-                  key: admin-password
           resources:
             limits:
               memory: "128Mi"
