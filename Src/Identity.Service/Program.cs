@@ -55,12 +55,12 @@ builder.Services.AddIdentityServer(options =>
     options.Events.RaiseFailureEvents = true;
     options.Events.RaiseErrorEvents = true;
 
-    options.KeyManagement.KeyPath = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location);
+    options.KeyManagement.KeyPath = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location!)!;
 
 }).AddAspNetIdentity<ApplicationUser>()
-  .AddInMemoryApiScopes(identityServerSettings!.ApiScopes)
-  .AddInMemoryApiResources(identityServerSettings.ApiResources)
-  .AddInMemoryClients(identityServerSettings.Clients)
+  .AddInMemoryApiScopes(identityServerSettings!.ApiScopes!)
+  .AddInMemoryApiResources(identityServerSettings.ApiResources!)
+  .AddInMemoryClients(identityServerSettings.Clients!)
   .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
   .AddDeveloperSigningCredential();
 
@@ -78,8 +78,12 @@ builder.Services.AddHostedService<IdentitySeedHostedService>();
 _ = builder.Services.AddEndpointsApiExplorer();
 _ = builder.Services.AddSwaggerGen();
 
-builder.Services.AddHealthChecks()
-                .AddMongoDb();
+builder.Services.AddHealthChecks().AddMongoDb();
+
+if (builder.Environment.IsProduction())
+{
+    _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
+}
 
 var app = builder.Build();
 
