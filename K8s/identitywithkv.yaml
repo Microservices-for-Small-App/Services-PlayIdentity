@@ -60,6 +60,7 @@ kind: ServiceAccount
 metadata:
   name: identity-serviceaccount
   annotations:
+    # This is the client id of the managed identity. Please remove the client id before checking in the code.
     azure.workload.identity/client-id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXX
   labels:
     azure.workload.identity/use: "true"
