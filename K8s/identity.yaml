@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: identityservice-deployment
+  name: identity-deployment
 spec:
   selector:
     matchLabels:
-      app: identityservice-app
+      app: identity-app
   template:
     metadata:
       labels:
-        app: identityservice-app
+        app: identity-app
     spec:
       containers:
         - name: ssp-identityservice
@@ -61,7 +61,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: identityservice-app
+    app: identity-app
   ports:
     - port: 80
       targetPort: 5002
