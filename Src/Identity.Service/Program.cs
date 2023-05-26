@@ -15,6 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 const string AllowedOriginSetting = "AllowedOrigin";
 
+if (builder.Environment.IsProduction())
+{
+    _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
+}
+
 // Add services to the container.
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
