@@ -83,10 +83,10 @@ _ = builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecks().AddMongoDb();
 
-if (builder.Environment.IsProduction())
-{
-    _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
-}
+// if (builder.Environment.IsProduction())
+// {
+//     _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
+// }
 
 var app = builder.Build();
 
