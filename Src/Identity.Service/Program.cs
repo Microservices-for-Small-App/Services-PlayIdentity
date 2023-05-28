@@ -1,4 +1,3 @@
-using Azure.Identity;
 using CommonLibrary.AzureKeyVaultConfig;
 using CommonLibrary.HealthChecks;
 using CommonLibrary.MassTransit;
@@ -82,11 +81,6 @@ _ = builder.Services.AddEndpointsApiExplorer();
 _ = builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecks().AddMongoDb();
-
-// if (builder.Environment.IsProduction())
-// {
-//     _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
-// }
 
 var app = builder.Build();
 
