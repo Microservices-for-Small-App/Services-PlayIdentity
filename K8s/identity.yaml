@@ -21,7 +21,7 @@ spec:
             - name: ServiceSettings__MessageBroker
               value: SERVICEBUS
             - name: ServiceSettings__KeyVaultName
-              value: playeconomy
+              value: kv-playeconomy-dev-001
             - name: MongoDbSettings__ConnectionString
               valueFrom:
                 secretKeyRef:
