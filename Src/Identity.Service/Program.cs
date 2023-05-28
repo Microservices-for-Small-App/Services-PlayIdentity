@@ -1,4 +1,4 @@
-using CommonLibrary.AzureKeyVaultConfig;
+using Azure.Identity;
 using CommonLibrary.HealthChecks;
 using CommonLibrary.MassTransit;
 using CommonLibrary.Settings;
@@ -16,12 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 const string AllowedOriginSetting = "AllowedOrigin";
 
-builder.Host.ConfigureAzureKeyVault();
+// builder.Host.ConfigureAzureKeyVault();
 
-//if (builder.Environment.IsProduction())
-//{
-//    _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
-//}
+if (builder.Environment.IsProduction())
+{
+    _ = builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KvUrl"]!), new DefaultAzureCredential());
+}
 
 // Add services to the container.
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
