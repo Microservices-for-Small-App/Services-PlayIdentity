@@ -51,7 +51,7 @@ kind: Service
 metadata:
   name: identity-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: identity
   ports:
