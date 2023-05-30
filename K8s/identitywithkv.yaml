@@ -22,6 +22,8 @@ spec:
               value: SERVICEBUS
             - name: ServiceSettings__KeyVaultName
               value: kv-playeconomy-dev-001
+            - name: IdentitySettings__PathBase
+              value: /identity-svc
           resources:
             limits:
               memory: "128Mi"
@@ -49,7 +51,7 @@ kind: Service
 metadata:
   name: identity-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: identity
   ports:

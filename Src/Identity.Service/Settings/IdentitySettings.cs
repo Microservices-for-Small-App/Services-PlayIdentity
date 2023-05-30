@@ -7,4 +7,6 @@ public class IdentitySettings
     public string? AdminUserPassword { get; init; }
 
     public decimal StartingGil { get; init; }
+
+    public string? PathBase { get; set; }
 }
