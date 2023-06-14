@@ -14,7 +14,7 @@ COPY ["Src/Identity.Contracts/Identity.Contracts.csproj", "Src/Identity.Contract
 COPY ["Src/Identity.Service/Identity.Service.csproj", "Src/Identity.Service/"]
 
 RUN --mount=type=secret,id=GH_OWNER,dst=/GH_OWNER --mount=type=secret,id=GH_PAT,dst=/GH_PAT \
-    dotnet nuget add source --username USERNAME --password `cat /GH_PAT` --store-password-in-clear-text --name github "https://nuget.pkg.github.com/`cat /GH_OWNER`/index.json"
+    dotnet nuget add source --username vishipayyallore --password `cat /GH_PAT` --store-password-in-clear-text --name github "https://nuget.pkg.github.com/`cat /GH_OWNER`/index.json"
 
 RUN dotnet restore "Src/Identity.Service/Identity.Service.csproj"
 COPY ./Src ./Src
